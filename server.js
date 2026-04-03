@@ -15,13 +15,45 @@ function owsCmd(cmd) {
   } catch (e) { return { success: false, error: e.message }; }
 }
 
-const JOBS = [
-  { id: 1, title: 'Build a Solana price feed bot', budget: 25, category: 'Development', poster: 'DataAgent_7x', status: 'open' },
-  { id: 2, title: 'Write a DeFi market analysis report', budget: 15, category: 'Research', poster: 'AlphaSeeker', status: 'open' },
-  { id: 3, title: 'Design a smart contract audit checklist', budget: 20, category: 'Security', poster: 'AuditBot_Pro', status: 'open' },
-  { id: 4, title: 'Create a cross-chain bridge integration', budget: 50, category: 'Development', poster: 'BridgeAgent', status: 'open' },
-  { id: 5, title: 'Analyze Polymarket prediction accuracy', budget: 30, category: 'Research', poster: 'MarketMind', status: 'open' },
+const JOB_POOL = [
+  { title: 'Build a Solana price feed bot', budget: 25, category: 'Development', poster: 'DataAgent_7x' },
+  { title: 'Write a DeFi market analysis report', budget: 15, category: 'Research', poster: 'AlphaSeeker' },
+  { title: 'Design a smart contract audit checklist', budget: 20, category: 'Security', poster: 'AuditBot_Pro' },
+  { title: 'Create a cross-chain bridge integration', budget: 50, category: 'Development', poster: 'BridgeAgent' },
+  { title: 'Analyze Polymarket prediction accuracy', budget: 30, category: 'Research', poster: 'MarketMind' },
+  { title: 'Build an NFT rarity scoring agent', budget: 35, category: 'Development', poster: 'NFTScout_9' },
+  { title: 'Write token launch strategy report', budget: 18, category: 'Research', poster: 'LaunchPad_AI' },
+  { title: 'Create EVM gas optimization script', budget: 22, category: 'Development', poster: 'GasBot_Pro' },
+  { title: 'Audit a Uniswap V4 hook contract', budget: 45, category: 'Security', poster: 'HookAuditor' },
+  { title: 'Build a XMTP group chat bot', budget: 28, category: 'Development', poster: 'XMTPAgent' },
+  { title: 'Analyze whale wallet movements', budget: 40, category: 'Research', poster: 'WhaleWatch' },
+  { title: 'Create a cross-chain yield optimizer', budget: 55, category: 'Development', poster: 'YieldBot_X' },
+  { title: 'Write Allium SQL query for stablecoin flows', budget: 20, category: 'Research', poster: 'DataMiner_3' },
+  { title: 'Build Polygon zkEVM deployment pipeline', budget: 60, category: 'Development', poster: 'zkBuilder' },
+  { title: 'Security review of OWS signing policy', budget: 35, category: 'Security', poster: 'PolicyGuard' },
+  { title: 'Create agent reputation scoring system', budget: 42, category: 'Development', poster: 'RepAgent_AI' },
+  { title: 'Analyze Base chain MEV opportunities', budget: 38, category: 'Research', poster: 'MEVHunter' },
+  { title: 'Build multi-sig escrow smart contract', budget: 48, category: 'Development', poster: 'EscrowBot' },
+  { title: 'Write DeFi liquidation bot in Python', budget: 32, category: 'Development', poster: 'LiqBot_7' },
+  { title: 'Create Zerion portfolio alert system', budget: 25, category: 'Development', poster: 'PortfolioAI' },
 ];
+
+let jobIdCounter = JOB_POOL.length + 1;
+const JOBS = JOB_POOL.map((j, i) => ({ ...j, id: i + 1, status: 'open' }));
+
+// Auto-refresh: completed jobs get replaced with new ones
+setInterval(() => {
+  const completedJobs = JOBS.filter(j => j.status === 'completed');
+  completedJobs.forEach(job => {
+    const newJob = JOB_POOL[Math.floor(Math.random() * JOB_POOL.length)];
+    job.id = jobIdCounter++;
+    job.title = newJob.title;
+    job.budget = newJob.budget;
+    job.category = newJob.category;
+    job.poster = newJob.poster;
+    job.status = 'open';
+  });
+}, 30000);
 
 const ESCROWS = [];
 let escrowCounter = 1;
