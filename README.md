@@ -169,3 +169,18 @@ owsagentwork/
 ---
 
 *Built with ❤️ using Open Wallet Standard v1.2.0 + XMTP*
+
+---
+
+## 👨‍💻 About the Builder
+
+Built by **Doğan Sarı** — independent developer specializing in algorithmic trading systems, crypto bots, and blockchain infrastructure.
+
+| Platform | Handle |
+|----------|--------|
+| 🐦 Twitter/X | [@dogiladeveloper](https://twitter.com/dogiladeveloper) |
+| 💬 Telegram | [@dogiladeveloper](https://t.me/dogiladeveloper) |
+| 🎮 Discord | dogiladeveloper |
+| 🐙 GitHub | [dogiladeveloper](https://github.com/dogiladeveloper) |
+
+*Built end-to-end in one night for OWS Hackathon 2026.*
